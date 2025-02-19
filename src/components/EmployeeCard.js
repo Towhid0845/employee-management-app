@@ -3,10 +3,13 @@ import { Card } from "react-bootstrap";
 
 const EmployeeCard = ({ employee }) => {
   return (
-    <Card className="m-3" style={{ width: "18rem" }}>
+    <Card className="m-3">
       <Card.Img
         variant="top"
-        src={employee.profilePicture || "https://via.placeholder.com/150"}
+        src={
+          employee.profilePicture ||
+          "https://via.assets.so/img.jpg"
+        }
       />
       <Card.Body>
         <Card.Title>{employee.name}</Card.Title>

@@ -7,7 +7,7 @@ const CardView = () => {
     <div className="container mt-4">
       <div className="row">
         {employeesData.map((employee) => (
-          <div className="col-md-4" key={employee.id}>
+          <div className="col-md-3" key={employee.id}>
             <EmployeeCard employee={employee} />
           </div>
         ))}
