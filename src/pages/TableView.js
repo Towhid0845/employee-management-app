@@ -7,14 +7,12 @@ import Edit from "../Dashboard/Edit";
 
 
 const TableView = () => {
+  
   const [employees, setEmployees] = useState(employeesData);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
-  // const handleDelete = (id) => {
-  //   setEmployees(employees.filter((emp) => emp.id !== id));
-  // };
   const handleEdit = (id) => {
     const [employee] = employees.filter((employee) => employee.id === id);
 
@@ -37,7 +35,7 @@ const TableView = () => {
         Swal.fire({
           icon: "success",
           title: "Deleted!",
-          text: `${employee.firstName} ${employee.lastName}'s data has been deleted.`,
+          text: `${employee.name}'s data has been deleted.`,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -52,7 +50,7 @@ const TableView = () => {
       <EmployeeTable
         employees={employees}
         handleEdit={handleEdit}
-        onDelete={handleDelete}
+        handleDelete={handleDelete}
       />
 
       {isAdding && (

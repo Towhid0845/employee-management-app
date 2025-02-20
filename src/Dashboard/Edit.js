@@ -4,16 +4,18 @@ import Swal from "sweetalert2";
 function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
   const id = selectedEmployee.id;
 
-  const [firstName, setFirstName] = useState(selectedEmployee.firstName);
-  const [lastName, setLastName] = useState(selectedEmployee.lastName);
+  const [profilePicture, setProfilePicture] = useState(
+    selectedEmployee.profilePicture
+  );
+  const [name, setName] = useState(selectedEmployee.name);
+  const [phone, setPhone] = useState(selectedEmployee.phone);
   const [email, setEmail] = useState(selectedEmployee.email);
-  const [salary, setSalary] = useState(selectedEmployee.salary);
-  const [date, setDate] = useState(selectedEmployee.date);
+  const [address, setAddress] = useState(selectedEmployee.address);
 
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    if (!firstName || !lastName || !email || !salary || !date) {
+    if (!profilePicture || !name || !phone || !email || !address) {
       return Swal.fire({
         icon: "error",
         title: "Error!",
@@ -22,29 +24,26 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
       });
     }
 
-    const employee = {
+    const updatedEmployee = {
       id,
-      firstName,
-      lastName,
+      profilePicture,
+      name,
+      phone,
       email,
-      salary,
-      date,
+      address,
     };
 
-    for (let i = 0; i < employees.length; i++) {
-      if (employees[i].id === id) {
-        employees.splice(i, 1, employee);
-        break;
-      }
-    }
+    const updatedList = employees.map((emp) =>
+      emp.id === id ? updatedEmployee : emp
+    );
 
-    setEmployees(employees);
+    setEmployees(updatedList);
     setIsEditing(false);
 
     Swal.fire({
       icon: "success",
       title: "Updated!",
-      text: `${employee.firstName} ${employee.lastName}'s data has been updated.`,
+      text: `${updatedEmployee.name}'s details have been updated.`,
       showConfirmButton: false,
       timer: 1500,
     });
@@ -54,22 +53,34 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
     <div className="small-container">
       <form onSubmit={handleUpdate}>
         <h1>Edit Employee</h1>
-        <label htmlFor="firstName">First Name</label>
+
+        <label htmlFor="profilePicture">Profile Picture URL</label>
         <input
-          id="firstName"
+          id="profilePicture"
           type="text"
-          name="firstName"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          name="profilePicture"
+          value={profilePicture}
+          onChange={(e) => setProfilePicture(e.target.value)}
         />
-        <label htmlFor="lastName">Last Name</label>
+
+        <label htmlFor="name">Name</label>
         <input
-          id="lastName"
+          id="name"
           type="text"
-          name="lastName"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
+
+        <label htmlFor="phone">Phone</label>
+        <input
+          id="phone"
+          type="text"
+          name="phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+
         <label htmlFor="email">Email</label>
         <input
           id="email"
@@ -78,22 +89,16 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label htmlFor="salary">Salary ($)</label>
+
+        <label htmlFor="address">Address</label>
         <input
-          id="salary"
-          type="number"
-          name="salary"
-          value={salary}
-          onChange={(e) => setSalary(e.target.value)}
+          id="address"
+          type="text"
+          name="address"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
         />
-        <label htmlFor="date">Date</label>
-        <input
-          id="date"
-          type="date"
-          name="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
+
         <div style={{ marginTop: "30px" }}>
           <input type="submit" value="Update" />
           <input
@@ -110,3 +115,5 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
 }
 
 export default Edit;
+
+
