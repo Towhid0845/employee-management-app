@@ -6,7 +6,7 @@ const EmployeeViewModal = ({ show, onHide, employee }) => {
   console.log("Employee in Modal:", employee);
 
   return (
-    <Modal show={show} onHide={onHide} centered>
+    <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
         <Modal.Title>Employee Details</Modal.Title>
       </Modal.Header>
@@ -17,7 +17,7 @@ const EmployeeViewModal = ({ show, onHide, employee }) => {
             src={employee.profilePicture || "https://via.assets.so/img.jpg"}
             alt={employee.name}
             className="p-3 mx-auto d-block"
-            style={{ width: "120px", height: "120px", borderRadius: "50%" }}
+            style={{ width: "180px", height: "180px", borderRadius: "50%", objectFit: "cover" }}
           />
           <Card.Body>
             <Card.Title>{employee.name}</Card.Title>
@@ -34,7 +34,7 @@ const EmployeeViewModal = ({ show, onHide, employee }) => {
         </Card>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onHide}>
+        <Button className="theme_btn" onClick={onHide}>
           Close
         </Button>
       </Modal.Footer>

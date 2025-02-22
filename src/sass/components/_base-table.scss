@@ -31,6 +31,7 @@
 
 .table-responsive {
   scrollbar-width: thin;
+  overflow-y: hidden;
 }
 
 th,
@@ -94,10 +95,8 @@ table {
       }
     }
 
-    .action_th {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-    }
+    // .action_th {
+    // }
   }
 
   .check {
@@ -123,11 +122,12 @@ table {
     }
   }
 
+
   tbody {
     tr {
       &:hover {
         td {
-          background-color: #F2F6FC;
+          background-color: #F2F6FC !important;
         }
 
         .action_btn {
@@ -164,21 +164,23 @@ table {
       min-width: unset;
     }
 
-    .pending {
-      background-color: #FEEB9C;
-    }
-
-    .approved {
+    .active {
       background-color: #C6EECE;
     }
 
-    .cancel {
+    .leave {
+      background-color: #c2c6c3;
+    }
+
+    .probation {
+      background-color: #FEEB9C;
+    }
+
+    .terminated {
       background-color: #FEC6CE;
     }
 
     .action_td {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
       position: sticky;
       right: 0;
     }
@@ -215,7 +217,7 @@ table {
         }
       }
 
-      .icon {
+      svg {
         width: 18px !important;
         height: 18px !important;
         color: $black;

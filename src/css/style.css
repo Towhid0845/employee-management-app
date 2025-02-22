@@ -63,7 +63,7 @@ body {
   font-weight: 700;
   line-height: normal;
   text-transform: uppercase;
-  padding: 13px 27px;
+  padding: 10px 27px;
   border-radius: 40px;
   background-color: #1A73E8;
   border: 0;
@@ -72,6 +72,14 @@ body {
 .theme_btn:hover {
   transform: translateY(-3px);
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  background-color: #141314;
+}
+
+.bg-disable {
+  background-color: #737177;
+}
+.bg-disable:hover {
+  background-color: #ff0000;
 }
 
 .p_1 {
@@ -259,7 +267,7 @@ body {
   z-index: 99;
   position: sticky;
   top: 14px;
-  background-color: #F6F8FC;
+  background-color: #f6f8fc;
 }
 .header_area::before {
   position: absolute;
@@ -267,7 +275,7 @@ body {
   right: -14px;
   width: 102%;
   height: 80px;
-  background-color: #F6F8FC;
+  background-color: #f6f8fc;
   content: "";
   z-index: -1;
 }
@@ -283,7 +291,7 @@ body {
   z-index: 999;
 }
 .header_area .header_left .sidebar_control_bar .sidebar_control_btn:hover {
-  background-color: #EAF1FB;
+  background-color: #eaf1fb;
 }
 .header_area .header_left .mobile_sidebar_control_bar .sidebar_control_btn {
   width: 40px;
@@ -295,7 +303,7 @@ body {
   border-radius: 50px;
 }
 .header_area .header_left .mobile_sidebar_control_bar .sidebar_control_btn:hover {
-  background-color: #EAF1FB;
+  background-color: #eaf1fb;
 }
 .header_area .header_right .date_time {
   padding-right: 24px;
@@ -308,7 +316,7 @@ body {
   content: "";
   width: 1px;
   height: 20px;
-  background-color: #BDBDBD;
+  background-color: #bdbdbd;
 }
 .header_area .header_right .date_time p {
   font-size: 16px;
@@ -316,7 +324,7 @@ body {
   color: #141314;
 }
 .header_area .header_right .action_info .icon_box .icon_btn {
-  color: #4F4F4F;
+  color: #4f4f4f;
   width: 36px;
   height: 36px;
   display: flex;
@@ -343,8 +351,6 @@ body {
   background-color: #ffffff;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   margin-top: 12px;
-  visibility: hidden;
-  opacity: 0;
   transition: all 0.2s ease-out 0s;
   transform: scale(0.6);
   transform-origin: top right;
@@ -352,6 +358,13 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+}
+.header_area .header_right .action_info .icon_box .information_box.show {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: scale(1) !important;
 }
 .header_area .header_right .action_info .icon_box .top {
   border-bottom: 1px solid #D3E3FD;
@@ -477,7 +490,7 @@ body {
 }
 .header_area .header_right .action_info .user_box .user_information {
   width: 280px;
-  background-color: #E9EEF6;
+  background-color: #e9eef6;
   border-radius: 15px;
   z-index: 99;
   top: 100%;
@@ -568,8 +581,7 @@ body {
   width: 20px;
   height: 20px;
 }
-
-.control_dropdown_menu {
+.header_area .header_right .action_info .user_box .user_information.show {
   visibility: visible !important;
   opacity: 1 !important;
   transform: scale(1) !important;
@@ -623,6 +635,10 @@ body {
 .sidebar .logo {
   padding: 14px;
   padding-top: 10px;
+}
+.sidebar .logo img {
+  border: 1px solid #008000;
+  border-radius: 50%;
 }
 .sidebar .menu_list {
   overflow-y: auto;
@@ -1104,6 +1120,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 3px 17px 3px 3px;
+  border: none;
 }
 .back_or_add_btn span {
   background-color: #ffffff !important;
@@ -1155,7 +1172,7 @@ body {
   height: 17px;
 }
 .form-label .lft .icon_error {
-  color: #DC3545;
+  color: #dc3545;
   margin-left: 5px;
   position: relative;
   top: -1px;
@@ -1170,7 +1187,7 @@ body {
   left: -6px;
   min-width: 190px;
   padding: 7px 15px;
-  background-color: #DC3545;
+  background-color: #dc3545;
   border-radius: 5px;
   color: #ffffff;
   font-size: 12px;
@@ -1184,7 +1201,7 @@ body {
   width: 10px;
   height: 10px;
   content: "";
-  background-color: #DC3545;
+  background-color: #dc3545;
   transform: rotate(45deg);
   border-radius: 1px;
 }
@@ -1208,7 +1225,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   color: #141314;
-  border: 1px solid #E1E3E1;
+  border: 1px solid #e1e3e1;
 }
 .form-control:focus {
   border-color: #1A73E8;
@@ -1222,7 +1239,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   color: #141314;
-  border: 1px solid #E1E3E1;
+  border: 1px solid #e1e3e1;
   width: 100%;
   transition: all 0.3s ease-out 0s;
   padding: 0.7rem 0.75rem;
@@ -1232,11 +1249,11 @@ body {
 }
 
 .form-control.error {
-  border-color: #DC3545 !important;
+  border-color: #dc3545 !important;
 }
 
 .input-group .chosen-container-single .chosen-single {
-  color: #232F3E;
+  color: #232f3e;
   line-height: 42px;
   height: 42px;
   font-size: 14px;
@@ -1245,7 +1262,7 @@ body {
 }
 .input-group .chosen-container-single .chosen-single {
   height: 42px;
-  border: 1px solid #E1E3E1;
+  border: 1px solid #e1e3e1;
   border-radius: 8px;
   background-color: #fff;
   background: none;
@@ -1256,7 +1273,7 @@ body {
   background-color: #ffffff;
 }
 .input-group .chosen-container-active.chosen-with-drop .chosen-single {
-  border: 1px solid #E1E3E1;
+  border: 1px solid #e1e3e1;
   background-image: none;
   box-shadow: none;
   background-color: #ffffff;
@@ -1311,7 +1328,7 @@ body {
   transition: all 0.3s ease;
 }
 .status_box .status_select .switch:checked {
-  background-color: #D3E3FD;
+  background-color: #d3e3fd;
 }
 .status_box .status_select .switch::before {
   position: absolute;
@@ -1324,13 +1341,13 @@ body {
   cursor: pointer;
   border: 1px solid rgba(100, 116, 139, 0.527);
   border-radius: 9999px;
-  background-color: #497ED3;
+  background-color: #497ed3;
   box-shadow: 0 3px 10px rgba(100, 116, 139, 0.327);
   transition: all 0.3s ease;
 }
 .status_box .status_select .switch:checked:before {
   transform: translateX(100%);
-  border-color: #D3E3FD;
+  border-color: #d3e3fd;
 }
 .status_box .switch:hover::before {
   box-shadow: 0 0 0px 8px rgba(0, 0, 0, 0.15);
@@ -1340,7 +1357,7 @@ body {
 }
 .status_box .action .active {
   border-radius: 40px;
-  background: #1C9527;
+  background: #1c9527;
   color: #ffffff;
   font-size: 12px;
   font-weight: 700;
@@ -1348,7 +1365,7 @@ body {
 }
 .status_box .action .deactive {
   border-radius: 40px;
-  background: #DC3545;
+  background: #dc3545;
   color: #ffffff;
   font-size: 12px;
   font-weight: 700;
@@ -1394,8 +1411,8 @@ body {
 }
 
 .image_upload_box {
-  background-color: #F6F8FC;
-  border: 1px solid #E1E3E1;
+  background-color: #f6f8fc;
+  border: 1px solid #e1e3e1;
   border-radius: 8px;
   padding: 17px;
   padding-top: 22px;
@@ -1406,7 +1423,7 @@ body {
   height: 110px;
   background-color: #ccc;
   border-radius: 50%;
-  border: 1px solid #E1E3E1;
+  border: 1px solid #e1e3e1;
   margin: 0 auto;
 }
 .image_upload_box .upload_box .img:hover .close_image {
@@ -1429,7 +1446,7 @@ body {
 .file_upload_label {
   width: 38px;
   height: 38px;
-  background-color: #497ED3;
+  background-color: #497ed3;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -1517,6 +1534,22 @@ body {
     margin-bottom: 6px;
   }
 }
+.modal-header {
+  padding: 10px 16px;
+}
+.modal-header .modal-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.modal-footer {
+  padding: 6px 16px;
+}
+
+.card-text strong {
+  line-height: 22px;
+}
+
 .page_header {
   margin-bottom: 14px;
 }
@@ -1723,6 +1756,7 @@ body {
 
 .table-responsive {
   scrollbar-width: thin;
+  overflow-y: hidden;
 }
 
 th,
@@ -1779,10 +1813,6 @@ table thead th .heading img {
 table thead th .heading .icon-up {
   margin-left: 4px;
 }
-table thead .action_th {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
 table .check {
   position: relative;
   top: 0;
@@ -1802,7 +1832,7 @@ table .form-check .form-check-input:checked {
   background-color: #1A73E8;
 }
 table tbody tr:hover td {
-  background-color: #F2F6FC;
+  background-color: #F2F6FC !important;
 }
 table tbody tr:hover .action_btn {
   background-color: #F2F6FC;
@@ -1827,18 +1857,19 @@ table tbody .status {
   border-radius: 40px;
   min-width: unset;
 }
-table tbody .pending {
-  background-color: #FEEB9C;
-}
-table tbody .approved {
+table tbody .active {
   background-color: #C6EECE;
 }
-table tbody .cancel {
+table tbody .leave {
+  background-color: #c2c6c3;
+}
+table tbody .probation {
+  background-color: #FEEB9C;
+}
+table tbody .terminated {
   background-color: #FEC6CE;
 }
 table tbody .action_td {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
   position: sticky;
   right: 0;
 }
@@ -1872,7 +1903,7 @@ table tbody .action_btn a::before {
   content: "";
   z-index: -1;
 }
-table tbody .action_btn .icon {
+table tbody .action_btn svg {
   width: 18px !important;
   height: 18px !important;
   color: #141314;

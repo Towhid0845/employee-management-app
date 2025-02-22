@@ -18,12 +18,10 @@ const Sidebar = () => {
     //   </Nav>
     // </div>
     <aside class="sidebar position-fixed top-0 start-0 h-100 w-100">
-      <div class="d-flex justify-content-between align-items-center gap-4">
+      <div class="d-flex justify-content-center align-items-center gap-4">
         <div class="logo">
           <Link to="/">
-            <img width="140" src="/images/logo.png" alt="logo" />
-            {/* import logo from "../assets/images/logo.png"; */}
-            {/* <img src={logo} alt="Logo" width="140" /> */}
+            <img width="80" src="/images/logo.png" alt="logo" />
           </Link>
         </div>
         <button class="close_mobile_sidebar bg-transparent border-0 d-block d-lg-none">

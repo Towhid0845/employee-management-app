@@ -1,19 +1,20 @@
 import React from "react";
 import { TbPencil, TbEye, TbTrash } from "react-icons/tb";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const ActionButtons = ({ onEdit, onView, onDelete }) => {
   return (
     <div className="action_btn">
-      <button onClick={onEdit} className="btn btn-light">
-        <TbPencil size={24} />
-      </button>
-      <button onClick={onView} className="btn btn-light">
-        <TbEye size={24} />
-      </button>
-      <button onClick={onDelete} className="btn btn-light text-danger">
-        <TbTrash size={24} />
-      </button>
+      <Link onClick={onEdit}>
+        <TbPencil size={18} />
+      </Link>
+      <Link onClick={onView}>
+        <TbEye size={18} />
+      </Link>
+      <Link onClick={onDelete}>
+        <TbTrash size={18} />
+      </Link>
     </div>
   );
 };

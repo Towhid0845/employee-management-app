@@ -3,7 +3,7 @@
   z-index: 99;
   position: sticky;
   top: 14px;
-  background-color: #F6F8FC;
+  background-color: #f6f8fc;
 
   &::before {
     position: absolute;
@@ -11,7 +11,7 @@
     right: -14px;
     width: 102%;
     height: 80px;
-    background-color: #F6F8FC;
+    background-color: #f6f8fc;
     content: "";
     z-index: -1;
   }
@@ -30,7 +30,7 @@
         z-index: 999;
 
         &:hover {
-          background-color: #EAF1FB;
+          background-color: #eaf1fb;
         }
       }
     }
@@ -46,7 +46,7 @@
         border-radius: 50px;
 
         &:hover {
-          background-color: #EAF1FB;
+          background-color: #eaf1fb;
         }
       }
     }
@@ -88,7 +88,7 @@
         content: "";
         width: 1px;
         height: 20px;
-        background-color: #BDBDBD;
+        background-color: #bdbdbd;
       }
 
       p {
@@ -100,7 +100,7 @@
     .action_info {
       .icon_box {
         .icon_btn {
-          color: #4F4F4F;
+          color: #4f4f4f;
           width: 36px;
           height: 36px;
           display: flex;
@@ -129,8 +129,6 @@
           background-color: $white;
           box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
           margin-top: 12px;
-          visibility: hidden;
-          opacity: 0;
           transition: all 0.2s ease-out 0s;
           transform: scale(0.6);
           transform-origin: top right;
@@ -138,6 +136,14 @@
           display: flex;
           flex-direction: column;
           overflow: hidden;
+          opacity: 0;
+          visibility: hidden;
+
+          &.show {
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: scale(1) !important;
+          }
         }
 
         .top {
@@ -289,7 +295,7 @@
 
         .user_information {
           width: 280px;
-          background-color: #E9EEF6;
+          background-color: #e9eef6;
           border-radius: 15px;
           z-index: 99;
           top: 100%;
@@ -303,7 +309,6 @@
           transform: scale(0.6);
           transform-origin: top right;
           box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
-
 
           .image {
             width: 80px;
@@ -393,25 +398,30 @@
               }
             }
           }
+
+          &.show {
+            visibility: visible !important;
+            opacity: 1 !important;
+            transform: scale(1) !important;
+          }
         }
       }
     }
   }
 }
 
-.control_dropdown_menu {
-  visibility: visible !important;
-  opacity: 1 !important;
-  transform: scale(1) !important;
-}
-
 // responsive css
-@media (max-width:1399.98px) {
+@media (max-width: 1399.98px) {
   .header_area .header_right .date_time p {
     font-size: 14px;
   }
 
-  .header_area .header_right .action_info .icon_box .icon_btn .notification_number {
+  .header_area
+    .header_right
+    .action_info
+    .icon_box
+    .icon_btn
+    .notification_number {
     width: 16px;
     height: 16px;
     top: -3px;
@@ -419,11 +429,26 @@
     font-size: 10px;
   }
 
-  .header_area .header_right .action_info .user_box .user_information .menus li a {
+  .header_area
+    .header_right
+    .action_info
+    .user_box
+    .user_information
+    .menus
+    li
+    a {
     font-size: 14px;
   }
 
-  .header_area .header_right .action_info .user_box .user_information .menus li a svg {
+  .header_area
+    .header_right
+    .action_info
+    .user_box
+    .user_information
+    .menus
+    li
+    a
+    svg {
     width: 18px;
     height: 18px;
     position: relative;
@@ -431,8 +456,7 @@
   }
 }
 
-@media (max-width:991.98px) {
-
+@media (max-width: 991.98px) {
   .header_area {
     .logo2 {
       a {
@@ -446,7 +470,7 @@
   }
 }
 
-@media (max-width:575.98px) {
+@media (max-width: 575.98px) {
   .messages_information {
     margin-right: -46px;
   }

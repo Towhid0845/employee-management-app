@@ -1,23 +1,40 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import EmployeeTable from "../components/EmployeeTable";
+import { TbPlus } from "react-icons/tb";
 import employeesData from "../data/employees";
-import Add from "../Dashboard/Add";
-import Edit from "../Dashboard/Edit";
-import EmployeeEditModal from "../components/EmployeeEditModal";
+import EmployeeTable from "../components/EmployeeTable";
+import AddModal from "../Dashboard/AddModal";
+import EditModal from "../Dashboard/EditModal";
+import ViewModal from "../components/ViewModal";
 
 const TableView = () => {
   const [employees, setEmployees] = useState(employeesData);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+
   const [isAdding, setIsAdding] = useState(false);
+  const [addModal, setAddModal] = useState(false);
+
   const [isEditing, setIsEditing] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+
+  const [viewModal, setViewModal] = useState(false);
+
+    const handleAdd = () => {
+      setIsAdding(true); 
+      setAddModal(true); 
+    };
+
 
   const handleEdit = (id) => {
     const [employee] = employees.filter((employee) => employee.id === id);
-
     setSelectedEmployee(employee);
     setIsEditing(true);
+    setEditModal(true);
+  };
+
+  const handleView = (employee) => {
+    setSelectedEmployee(employee);
+    setViewModal(true);
   };
 
   const handleDelete = (id) => {
@@ -46,59 +63,26 @@ const TableView = () => {
   };
 
   return (
-    // <div className="container">
-    //   <header>
-    //     <h1>Employee Management Software</h1>
-    //     <div style={{ marginTop: "30px", marginBottom: "18px" }}>
-    //       <button onClick={() => setIsAdding(true)} className="round-button">
-    //         Add Button
-    //       </button>
-    //     </div>
-    //   </header>
-    //   <EmployeeTable
-    //     employees={employees}
-    //     handleEdit={handleEdit}
-    //     handleDelete={handleDelete}
-    //   />
-
-    //   {isAdding && (
-    //     <Add
-    //       employees={employees}
-    //       setEmployees={setEmployees}
-    //       setIsAdding={setIsAdding}
-    //     />
-    //   )}
-
-    //   {isEditing && (
-    //     <Edit
-    //       employees={employees}
-    //       selectedEmployee={selectedEmployee}
-    //       setEmployees={setEmployees}
-    //       setIsEditing={setIsEditing}
-    //     />
-    //   )}
-    // </div>
-
-    <div class="content_body position-relative">
-      {/* <div class="component_loader">
-          <div class="loader"></div>
+    <div className="content_body position-relative">
+      {/* <div className="component_loader">
+          <div className="loader"></div>
         </div> */}
-      <div class="content_main">
+      <div className="content_main">
         {/* page header  */}
-        <div class="page_header d-flex align-items-center justify-content-between gap-4">
-          <h4 class="form_card_title">List Page</h4>
-          <div class="header_base_search d-none d-md-flex gap-3 align-items-center">
-            <div class="input_select">
-              <select class="form-select form-select-lg shadow-none">
+        <div className="page_header d-flex align-items-center justify-content-between gap-4">
+          <h4 className="form_card_title">List View</h4>
+          <div className="header_base_search d-none d-md-flex gap-3 align-items-center">
+            <div className="input_select">
+              <select className="form-select form-select-lg shadow-none">
                 <option selected>Select</option>
                 <option>Select One</option>
                 <option>Select Two</option>
                 <option>Select Three</option>
               </select>
             </div>
-            <div class="search_box position-relative">
+            <div className="search_box position-relative">
               <input type="text" placeholder="Search..." />
-              <button class="search_btn position-absolute top-50 translate-middle-y bg-transparent border-0">
+              <button className="search_btn position-absolute top-50 translate-middle-y bg-transparent border-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -109,7 +93,7 @@ const TableView = () => {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-search"
+                  className="icon icon-tabler icons-tabler-outline icon-tabler-search"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
@@ -117,7 +101,7 @@ const TableView = () => {
                 </svg>
               </button>
               <button
-                class="advance_filter"
+                className="advance_filter"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 data-bs-title="Advance search"
@@ -132,7 +116,7 @@ const TableView = () => {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-adjustments"
+                  className="icon icon-tabler icons-tabler-outline icon-tabler-adjustments"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
@@ -146,32 +130,32 @@ const TableView = () => {
                   <path d="M18 9v11" />
                 </svg>
               </button>
-              <div class="advance_search_result">
+              <div className="advance_search_result">
                 <form action="#">
-                  <div class="row g-3">
-                    <div class="col-xxl-3 col-xl-4 col-lg-6">
-                      <div class="form-group">
-                        <label class="form-label d-flex justify-content-between align-items-center gap-4">
-                          <div class="lft">
-                            Company Name <sup class="text-danger">*</sup>
+                  <div className="row g-3">
+                    <div className="col-xxl-3 col-xl-4 col-lg-6">
+                      <div className="form-group">
+                        <label className="form-label d-flex justify-content-between align-items-center gap-4">
+                          <div className="lft">
+                            Company Name <sup className="text-danger">*</sup>
                           </div>
                         </label>
-                        <div class="input-group position-relative">
+                        <div className="input-group position-relative">
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             placeholder="Enter your company name"
                           />
                         </div>
                       </div>
                     </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-6">
-                      <div class="form-group">
-                        <label class="form-label d-flex justify-content-between align-items-center gap-4">
-                          <div class="lft">Currency</div>
+                    <div className="col-xxl-3 col-xl-4 col-lg-6">
+                      <div className="form-group">
+                        <label className="form-label d-flex justify-content-between align-items-center gap-4">
+                          <div className="lft">Currency</div>
                         </label>
-                        <div class="input-group position-relative">
-                          <select class="chosen">
+                        <div className="input-group position-relative">
+                          <select className="chosen">
                             <option>--Select Currency--</option>
                             <option>Taka</option>
                             <option>USA Dollar</option>
@@ -180,10 +164,10 @@ const TableView = () => {
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div className="col-lg-12">
                       <button
                         type="submit"
-                        class="theme_btn rounded-2 w-100 advance_search_btn"
+                        className="theme_btn rounded-2 w-100 advance_search_btn"
                       >
                         Advance Search
                       </button>
@@ -193,51 +177,36 @@ const TableView = () => {
               </div>
             </div>
           </div>
-          <div class="right_page_header">
-            <a href="#" class="back_or_add_btn">
+          <div className="right_page_header">
+            <button onClick={handleAdd} className="back_or_add_btn">
               <span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-plus"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M12 5l0 14" />
-                  <path d="M5 12l14 0" />
-                </svg>
+                <TbPlus size={20} />
               </span>
               Add
-            </a>
+            </button>
           </div>
         </div>
         {/* pagination and action btn */}
-        <div class="pagination_action d-none d-md-block">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="top_pagination d-flex gap-4 align-items-center">
-                <div class="pagination">
+        <div className="pagination_action d-none d-md-block">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="top_pagination d-flex gap-4 align-items-center">
+                <div className="pagination">
                   <p>
                     <span>1</span> - <span>100</span> of <span>500</span>
                   </p>
                 </div>
-                <div class="show_item d-flex align-items-center gap-3 ms-3">
-                  <h4 class="sh">Show</h4>
-                  <select class="form-select form-select-lg shadow-none">
+                <div className="show_item d-flex align-items-center gap-3 ms-3">
+                  <h4 className="sh">Show</h4>
+                  <select className="form-select form-select-lg shadow-none">
                     <option>10</option>
                     <option>20</option>
                     <option>30</option>
                     <option>All</option>
                   </select>
                 </div>
-                <div class="prev_next_btn">
-                  <button class="btns bg-transparent border-0">
+                <div className="prev_next_btn">
+                  <button className="btns bg-transparent border-0">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -248,13 +217,13 @@ const TableView = () => {
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"
+                      className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"
                     >
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M15 6l-6 6l6 6" />
                     </svg>
                   </button>
-                  <button class="active btns bg-transparent border-0">
+                  <button className="active btns bg-transparent border-0">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -265,7 +234,7 @@ const TableView = () => {
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
+                      className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
                     >
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M9 6l6 6l-6 6" />
@@ -274,11 +243,11 @@ const TableView = () => {
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="d-flex gap-3 align-items-center justify-content-end">
-                <div class="print_action text-end">
+            <div className="col-md-6">
+              <div className="d-flex gap-3 align-items-center justify-content-end">
+                <div className="print_action text-end">
                   <button
-                    class="p_btn"
+                    className="p_btn"
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     data-bs-title="Print"
@@ -293,7 +262,7 @@ const TableView = () => {
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-printer"
+                      className="icon icon-tabler icons-tabler-outline icon-tabler-printer"
                     >
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" />
@@ -302,7 +271,7 @@ const TableView = () => {
                     </svg>
                   </button>
                   <button
-                    class="p_btn"
+                    className="p_btn"
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     data-bs-title="Downdload Excel"
@@ -317,7 +286,7 @@ const TableView = () => {
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-file-excel"
+                      className="icon icon-tabler icons-tabler-outline icon-tabler-file-excel"
                     >
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M14 3v4a1 1 0 0 0 1 1h4" />
@@ -327,7 +296,7 @@ const TableView = () => {
                     </svg>
                   </button>
                   <button
-                    class="p_btn"
+                    className="p_btn"
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     data-bs-title="PDF"
@@ -342,7 +311,7 @@ const TableView = () => {
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf"
+                      className="icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf"
                     >
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M14 3v4a1 1 0 0 0 1 1h4" />
@@ -360,13 +329,14 @@ const TableView = () => {
         </div>
         <EmployeeTable
           employees={employees}
+          handleView={handleView}
           handleEdit={handleEdit}
           handleDelete={handleDelete}
         />
         {/* base pagination */}
-        <div class="base_pagination d-flex justify-content-between align-items-center">
-          <p class="number">1 - 100 of 500</p>
-          <ul class="list-unstyled">
+        <div className="base_pagination d-flex justify-content-between align-items-center">
+          <p className="number">1 - 100 of 500</p>
+          <ul className="list-unstyled">
             <li>
               <a href="#">
                 <svg
@@ -379,14 +349,14 @@ const TableView = () => {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"
+                  className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M15 6l-6 6l6 6" />
                 </svg>
               </a>
             </li>
-            <li class="active">
+            <li className="active">
               <a href="#">1</a>
             </li>
             <li>
@@ -395,7 +365,7 @@ const TableView = () => {
             <li>
               <a href="#">3</a>
             </li>
-            <li class="rest">
+            <li className="rest">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -406,7 +376,7 @@ const TableView = () => {
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="icon icon-tabler icons-tabler-outline icon-tabler-dots"
+                className="icon icon-tabler icons-tabler-outline icon-tabler-dots"
               >
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
@@ -426,7 +396,7 @@ const TableView = () => {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
+                  className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M9 6l6 6l-6 6" />
@@ -436,26 +406,41 @@ const TableView = () => {
           </ul>
         </div>
       </div>
-      <footer class="footer_area text-center">
+      <footer className="footer_area text-center">
         <p>
           Copyright © 2024 <a href="#">Nogor Solutions Limited.</a> All Rights
           Reserved.
         </p>
       </footer>
-      {/* Employee Edit Modal */}
-      {isEditing && (
-        <Edit
+
+      {/* Employee Add Modal */}
+      {isAdding && (
+        <AddModal
           employees={employees}
-          selectedEmployee={selectedEmployee}
           setEmployees={setEmployees}
-          setIsEditing={setIsEditing}
+          setIsAdding={setIsAdding}
+          show={addModal}
+          onHide={() => setAddModal(false)}
         />
       )}
-      {/* <EmployeeEditModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
+
+      {/* Employee Edit Modal */}
+      {isEditing && (
+        <EditModal
+          employees={employees}
+          show={editModal}
+          onHide={() => setEditModal(false)}
+          selectedEmployee={selectedEmployee}
+          setEmployees={setEmployees}
+        />
+      )}
+
+      {/* Employee View Modal */}
+      <ViewModal
+        show={viewModal}
+        onHide={() => setViewModal(false)}
         employee={selectedEmployee}
-      /> */}
+      />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import AppNavbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import CardView from "./pages/CardView";
@@ -16,17 +16,6 @@ const App = () => {
           <Route path="/table" element={<TableView />} />
         </Routes>
       </div>
-
-      {/* <div className="d-flex">
-        <Sidebar />
-        <div className="flex-grow-1">
-          <AppNavbar />
-          <Routes>
-            <Route path="/" element={<CardView />} />
-            <Route path="/table" element={<TableView />} />
-          </Routes>
-        </div>
-      </div> */}
     </main>
   );
 };
