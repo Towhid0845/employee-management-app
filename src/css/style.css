@@ -630,6 +630,7 @@ body {
   display: flex;
   flex-direction: column;
   z-index: 999;
+  transition: all 0.3s ease-out 0s;
   border-right: 1px solid transparent;
 }
 .sidebar .logo {
@@ -699,14 +700,14 @@ body {
   padding-right: 4px;
 }
 .sidebar .menu_list .menu_item a:hover {
-  background-color: #EAEBEF;
+  background-color: #eaebef;
 }
 .sidebar .menu_list .menu_item .sub_menu li a {
   background-color: transparent;
   padding-left: 40px !important;
 }
 .sidebar .menu_list .menu_item .sub_menu li a:hover {
-  background-color: #EAEBEF;
+  background-color: #eaebef;
 }
 .sidebar .menu_list .menu_item .sub_menu li a svg {
   width: 12px;
@@ -779,9 +780,11 @@ body {
   position: relative;
   left: 2px;
 }
+.sidebar .close_mobile_sidebar {
+  padding-left: 95px;
+}
 
 .collapsed_sidebar .sidebar {
-  padding: 12px;
   max-width: 70px;
   padding-right: 12px !important;
 }
@@ -798,8 +801,9 @@ body {
 .collapsed_sidebar .sidebar .log_out2 {
   display: flex !important;
 }
-.collapsed_sidebar .sidebar .logo {
-  display: none;
+.collapsed_sidebar .sidebar .logo img {
+  width: 45px;
+  height: 45px;
 }
 .collapsed_sidebar .sidebar .menu_name {
   display: none !important;
@@ -808,7 +812,6 @@ body {
   display: none !important;
 }
 .collapsed_sidebar .sidebar .menu_list .menu_item a {
-  border-radius: 5px !important;
   padding-left: 15px;
 }
 .collapsed_sidebar .sidebar:hover {
@@ -899,9 +902,6 @@ body {
     padding-right: 12px !important;
     background: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  .sidebar .logo {
-    padding-bottom: 20px !important;
   }
   .collapsed_sidebar .sidebar {
     left: 0 !important;
@@ -1871,7 +1871,6 @@ table tbody .terminated {
 }
 table tbody .action_td {
   position: sticky;
-  right: 0;
 }
 table tbody .action_btn {
   position: absolute;

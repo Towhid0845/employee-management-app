@@ -3,9 +3,11 @@ import Swal from "sweetalert2";
 import { TbPlus } from "react-icons/tb";
 import employeesData from "../data/employees";
 import EmployeeTable from "../components/EmployeeTable";
-import AddModal from "../Dashboard/AddModal";
-import EditModal from "../Dashboard/EditModal";
+import AddModal from "../components/AddModal";
+import EditModal from "../components/EditModal";
 import ViewModal from "../components/ViewModal";
+import { Link } from "react-router-dom";
+import Footer from "../components/Footer"
 
 const TableView = () => {
   const [employees, setEmployees] = useState(employeesData);
@@ -406,12 +408,7 @@ const TableView = () => {
           </ul>
         </div>
       </div>
-      <footer className="footer_area text-center">
-        <p>
-          Copyright © 2024 <a href="#">Nogor Solutions Limited.</a> All Rights
-          Reserved.
-        </p>
-      </footer>
+      <Footer />
 
       {/* Employee Add Modal */}
       {isAdding && (

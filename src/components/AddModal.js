@@ -51,69 +51,6 @@ function Add({ employees, setEmployees, setIsAdding, show, onHide }) {
   };
 
   return (
-    // <div className="small-container">
-    //   <Modal show={show} onHide={onHide} size="lg">
-    //     <Modal.Header closeButton>
-    //       <Modal.Title>Add Employee</Modal.Title>
-    //     </Modal.Header>
-    //     <Modal.Body>
-    //       <form onSubmit={handleAdd}>
-    //         <label className="form-label" htmlFor="profilePicture">Profile Picture</label>
-    //         <input
-    //           id="profilePicture"
-    //           type="text"
-    //           name="profilePicture"
-    //           value={profilePicture}
-    //           onChange={(e) => setProfilePicture(e.target.value)}
-    //         />
-    //         <label className="form-label" htmlFor="name">Name</label>
-    //         <input
-    //           id="name"
-    //           type="text"
-    //           ref={textInput}
-    //           name="name"
-    //           value={name}
-    //           onChange={(e) => setName(e.target.value)}
-    //         />
-    //         <label className="form-label" htmlFor="phone">Phone No</label>
-    //         <input
-    //           id="phone"
-    //           type="text"
-    //           name="phone"
-    //           value={phone}
-    //           onChange={(e) => setPhone(e.target.value)}
-    //         />
-    //         <label className="form-label" htmlFor="email">Email</label>
-    //         <input
-    //           id="email"
-    //           type="email"
-    //           name="email"
-    //           value={email}
-    //           onChange={(e) => setEmail(e.target.value)}
-    //         />
-    //         <label className="form-label" htmlFor="address">Address</label>
-    //         <input
-    //           id="address"
-    //           type="text"
-    //           name="address"
-    //           value={address}
-    //           onChange={(e) => setAddress(e.target.value)}
-    //         />
-
-    //         <div style={{ marginTop: "30px" }}>
-    //           <input type="submit" value="Add" />
-    //           <input
-    //             style={{ marginLeft: "12px" }}
-    //             className="muted-button"
-    //             type="button"
-    //             value="Cancel"
-    //             onClick={() => setIsAdding(false)}
-    //           />
-    //         </div>
-    //       </form>
-    //     </Modal.Body>
-    //   </Modal>
-    // </div>
     <Modal show={show} onHide={onHide} size="lg">
       <Modal.Header closeButton>
         <Modal.Title>Add Employee</Modal.Title>

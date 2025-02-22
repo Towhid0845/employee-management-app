@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import DateTime from "./DateTIme";
 
-const AppNavbar = () => {
+const AppNavbar = ({ toggleSidebar }) => {
   const [openDropdown, setOpenDropdown] = useState(null); // Track which dropdown is open
   const menuRefs = useRef({}); // Store multiple refs for different dropdowns
 
@@ -33,7 +33,10 @@ const AppNavbar = () => {
           <div className="header_left">
             <div className="main d-flex gap-2 align-items-center">
               <div className="sidebar_control_bar">
-                <button className="sidebar_control_btn border-0">
+                <button
+                  className="sidebar_control_btn border-0"
+                  onClick={toggleSidebar}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="25"
@@ -218,14 +221,18 @@ const AppNavbar = () => {
                 >
                   <img
                     className="rounded-pill w-100 h-100 object-fit-cover"
-                    src="images/profile-user.png"
+                    src="images/profile.jpg"
                     alt="profile-user"
                   />
                 </button>
-                <div className={`user_information position-absolute dropdown_menu_info ${openDropdown === "menu3" ? "show" : ""}`}>
+                <div
+                  className={`user_information position-absolute dropdown_menu_info ${
+                    openDropdown === "menu3" ? "show" : ""
+                  }`}
+                >
                   <div className="edit_image text-center">
                     <div className="image position-relative">
-                      <img src="images/profile-edit.png" alt="profile-edit" />
+                      <img src="images/profile.jpg" alt="profile-edit" />
                       <div className="edit_input">
                         <label for="file">
                           <svg
@@ -249,7 +256,7 @@ const AppNavbar = () => {
                       </div>
                     </div>
                     <div className="name text-center">
-                      <h4 className="nm">Nogor Solutions Limited</h4>
+                      <h4 className="nm">Towhiduzzaman</h4>
                       <a href="#" className="edit">
                         Edit Your Profile
                       </a>

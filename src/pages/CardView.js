@@ -1,6 +1,7 @@
 import React from "react";
 import EmployeeCard from "../components/EmployeeCard";
 import employeesData from "../data/employees";
+import Footer from "../components/Footer";
 
 const CardView = () => {
   return (
@@ -77,6 +78,7 @@ const CardView = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

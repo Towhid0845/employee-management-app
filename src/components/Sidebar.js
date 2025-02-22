@@ -1,30 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ( { toggleSidebar }) => {
+  const [activeMenu, setActiveMenu] = useState("cardView");
+
+  // Function to handle menu item clicks
+  const handleMenuClick = (menu) => {
+    setActiveMenu(menu);
+  };
+
   return (
-    // <div
-    //   className="d-flex flex-column p-3 bg-light"
-    //   style={{ width: "250px", height: "100vh" }}
-    // >
-    //   <Nav className="flex-column">
-    //     <Nav.Link as={Link} to="/">
-    //       Card View
-    //     </Nav.Link>
-    //     <Nav.Link as={Link} to="/table">
-    //       Table View
-    //     </Nav.Link>
-    //   </Nav>
-    // </div>
-    <aside class="sidebar position-fixed top-0 start-0 h-100 w-100">
+    <aside class={`sidebar position-fixed top-0 start-0 h-100 w-100`}>
       <div class="d-flex justify-content-center align-items-center gap-4">
         <div class="logo">
           <Link to="/">
             <img width="80" src="/images/logo.png" alt="logo" />
           </Link>
         </div>
-        <button class="close_mobile_sidebar bg-transparent border-0 d-block d-lg-none">
+        <button
+          class="close_mobile_sidebar bg-transparent border-0 d-block d-lg-none"
+          onClick={toggleSidebar}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -45,13 +42,16 @@ const Sidebar = () => {
       </div>
       <div class="menu_list">
         <ul class="list-unstyled">
-          <Nav className="menu_item active">
+          <Nav
+            className={`menu_item ${activeMenu === "cardView" ? "active" : ""}`}
+          >
             <Nav.Link
               as={Link}
               to="/"
               data-bs-toggle="tooltip"
               data-bs-placement="right"
               data-bs-title="Dashboard"
+              onClick={() => handleMenuClick("cardView")}
             >
               <div class="menu_icon">
                 <svg
@@ -79,13 +79,18 @@ const Sidebar = () => {
               </div>
             </Nav.Link>
           </Nav>
-          <Nav className="menu_item">
+          <Nav
+            className={`menu_item ${
+              activeMenu === "tableView" ? "active" : ""
+            }`}
+          >
             <Nav.Link
               as={Link}
               to="/table"
               data-bs-toggle="tooltip"
               data-bs-placement="right"
               data-bs-title="Default"
+              onClick={() => handleMenuClick("tableView")}
             >
               <div class="menu_icon">
                 <svg

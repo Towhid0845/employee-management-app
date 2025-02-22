@@ -4,15 +4,15 @@
   display: flex;
   flex-direction: column;
   z-index: 999;
-  // transition: $transition;
+  transition: $transition;
   border-right: 1px solid transparent;
 
   .logo {
     padding: 14px;
     padding-top: 10px;
 
-    img{
-      border: 1px solid #008000; 
+    img {
+      border: 1px solid #008000;
       border-radius: 50%;
     }
   }
@@ -80,7 +80,7 @@
         }
 
         &:hover {
-          background-color: #EAEBEF;
+          background-color: #eaebef;
         }
       }
 
@@ -91,7 +91,7 @@
             padding-left: 40px !important;
 
             &:hover {
-              background-color: #EAEBEF;
+              background-color: #eaebef;
             }
 
             svg {
@@ -167,7 +167,6 @@
     justify-content: center;
 
     .logout_btn2 {
-
       .sign {
         width: 38px;
         height: 38px;
@@ -188,11 +187,16 @@
       }
     }
   }
+
+  .close_mobile_sidebar{
+    padding-left: 95px;
+  }
 }
 
 .collapsed_sidebar {
+  // margin-left: -100px;
   .sidebar {
-    padding: 12px;
+    // padding: 12px;
     max-width: 70px;
     padding-right: 12px !important;
 
@@ -214,7 +218,10 @@
     }
 
     .logo {
-      display: none;
+      img {
+        width: 45px;
+        height: 45px;
+      }
     }
 
     .menu_name {
@@ -226,7 +233,6 @@
     }
 
     .menu_list .menu_item a {
-      border-radius: 5px !important;
       padding-left: 15px;
     }
 
@@ -280,7 +286,7 @@
 }
 
 // responsive css
-@media (max-width:1399.98px) {
+@media (max-width: 1399.98px) {
   .sidebar {
     max-width: 222px;
   }
@@ -336,8 +342,7 @@
   }
 }
 
-@media (max-width:991.98px) {
-
+@media (max-width: 991.98px) {
   .sidebar {
     transition: $transition;
     padding: 12px;
@@ -346,10 +351,6 @@
     padding-right: 12px !important;
     background: $white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-    .logo {
-      padding-bottom: 20px !important;
-    }
   }
 
   .collapsed_sidebar {
@@ -405,7 +406,7 @@
     }
   }
 
-  .collapsed_sidebar .sidebar .d-flex.justify-content-between button{
+  .collapsed_sidebar .sidebar .d-flex.justify-content-between button {
     margin-right: 14px;
   }
 }
