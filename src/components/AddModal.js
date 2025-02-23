@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Swal from "sweetalert2";
 import { Modal, Button } from "react-bootstrap";
+import axios from "axios";
 
 function Add({ employees, setEmployees, setIsAdding, show, onHide }) {
   const [profilePicture, setProfilePicture] = useState("");
@@ -16,6 +17,8 @@ function Add({ employees, setEmployees, setIsAdding, show, onHide }) {
     address: false,
   });
 
+  const [isUploading, setIsUploading] = useState(false); // Track image upload status
+
   const textInput = useRef(null);
 
   useEffect(() => {
@@ -23,6 +26,39 @@ function Add({ employees, setEmployees, setIsAdding, show, onHide }) {
       textInput.current.focus();
     }
   }, []);
+
+  // Function to upload image to Cloudinary
+  const uploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "your_upload_preset"); // Replace with your Cloudinary upload preset
+
+    try {
+      setIsUploading(true);
+      const response = await axios.post(
+        `https://api.cloudinary.com/v1_1/your_cloud_name/image/upload`, // Replace with your Cloudinary cloud name
+        formData
+      );
+      setProfilePicture(response.data.secure_url); // Save the image URL
+      setIsUploading(false);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Upload Failed",
+        text: "Failed to upload profile picture. Please try again.",
+      });
+      setIsUploading(false);
+    }
+  };
+
+  // Handle file input change
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      uploadImage(file);
+    }
+  };
 
   // Validation function
   const validateForm = () => {
@@ -37,7 +73,7 @@ function Add({ employees, setEmployees, setIsAdding, show, onHide }) {
 
     // Validate Profile Picture URL
     if (!profilePicture) {
-      errors.push("Profile Picture URL is required.");
+      errors.push("Profile Picture is required.");
       newInvalidFields.profilePicture = true;
     }
 
@@ -80,7 +116,7 @@ function Add({ employees, setEmployees, setIsAdding, show, onHide }) {
     return errors;
   };
 
-  const handleAdd = (e) => {
+  const handleAdd = async (e) => {
     e.preventDefault();
 
     // Validate form inputs
@@ -109,17 +145,48 @@ function Add({ employees, setEmployees, setIsAdding, show, onHide }) {
       email,
       address,
     };
-    setEmployees([...employees, newEmployee]);
-    setIsAdding(false);
 
-    // Show success message
-    Swal.fire({
-      icon: "success",
-      title: "Added!",
-      text: `${name}'s data has been added.`,
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    try {
+      // Save employee data to MockAPI
+      const response = await axios.post(
+        "https://6313b715a8d3f673ffcf5d61.mockapi.io/employee", // Replace with your MockAPI endpoint
+        newEmployee
+      );
+
+      // Update local state (if needed)
+      setEmployees([...employees, response.data]);
+
+      // Show success message
+      Swal.fire({
+        icon: "success",
+        title: "Added!",
+        text: `${name}'s data has been added.`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      // Close the modal
+      setIsAdding(false);
+    } catch (error) {
+      console.error("Error adding employee:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to add employee. Please try again.",
+      });
+    }
+
+    // setEmployees([...employees, newEmployee]);
+    // setIsAdding(false);
+
+    // // Show success message
+    // Swal.fire({
+    //   icon: "success",
+    //   title: "Added!",
+    //   text: `${name}'s data has been added.`,
+    //   showConfirmButton: false,
+    //   timer: 1500,
+    // });
   };
 
   return (
@@ -130,7 +197,7 @@ function Add({ employees, setEmployees, setIsAdding, show, onHide }) {
       <Modal.Body>
         <form onSubmit={handleAdd} className="employee-form">
           <div className="row g-3">
-            <div className="form-group col-md-6">
+            {/*<div className="form-group col-md-6">
               <label className="form-label" htmlFor="profilePicture">
                 Profile Picture URL
               </label>
@@ -145,6 +212,29 @@ function Add({ employees, setEmployees, setIsAdding, show, onHide }) {
                 }`}
                 placeholder="Enter profile picture URL"
               />
+            </div>*/}
+            <div className="form-group col-md-6">
+              <label className="form-label" htmlFor="profilePicture">
+                Profile Picture
+              </label>
+              <input
+                id="profilePicture"
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className={`form-control ${
+                  invalidFields.profilePicture ? "is-invalid" : ""
+                }`}
+                disabled={isUploading}
+              />
+              {isUploading && <p>Uploading image...</p>}
+              {profilePicture && (
+                <img
+                  src={profilePicture}
+                  alt="Profile Preview"
+                  style={{ width: "100px", marginTop: "10px" }}
+                />
+              )}
             </div>
 
             <div className="form-group col-md-6">
