@@ -12,14 +12,14 @@ const Sidebar = ( { toggleSidebar }) => {
 
   return (
     <aside class={`sidebar position-fixed top-0 start-0 h-100 w-100`}>
-      <div class="d-flex justify-content-center align-items-center gap-4">
-        <div class="logo">
+      <div className="d-flex justify-content-center align-items-center gap-4">
+        <div className="logo">
           <Link to="/">
             <img width="80" src="/images/logo.png" alt="logo" />
           </Link>
         </div>
         <button
-          class="close_mobile_sidebar bg-transparent border-0 d-block d-lg-none"
+          className="close_mobile_sidebar bg-transparent border-0 d-block d-lg-none"
           onClick={toggleSidebar}
         >
           <svg
@@ -32,7 +32,7 @@ const Sidebar = ( { toggleSidebar }) => {
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-x"
+            className="icon icon-tabler icons-tabler-outline icon-tabler-x"
           >
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M18 6l-12 12" />
@@ -40,8 +40,8 @@ const Sidebar = ( { toggleSidebar }) => {
           </svg>
         </button>
       </div>
-      <div class="menu_list">
-        <ul class="list-unstyled">
+      <div className="menu_list">
+        <ul className="list-unstyled">
           <Nav
             className={`menu_item ${activeMenu === "cardView" ? "active" : ""}`}
           >
@@ -53,7 +53,7 @@ const Sidebar = ( { toggleSidebar }) => {
               data-bs-title="Dashboard"
               onClick={() => handleMenuClick("cardView")}
             >
-              <div class="menu_icon">
+              <div className="menu_icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -64,7 +64,7 @@ const Sidebar = ( { toggleSidebar }) => {
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"
+                  className="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"
                 >
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                   <path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" />
@@ -73,9 +73,9 @@ const Sidebar = ( { toggleSidebar }) => {
                   <path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" />
                 </svg>
               </div>
-              <div class="menu_name">Card View</div>
-              <div class="menu_info">
-                <div class="menu_number">5</div>
+              <div className="menu_name">Card View</div>
+              <div className="menu_info">
+                <div className="menu_number">5</div>
               </div>
             </Nav.Link>
           </Nav>
@@ -92,7 +92,7 @@ const Sidebar = ( { toggleSidebar }) => {
               data-bs-title="Default"
               onClick={() => handleMenuClick("tableView")}
             >
-              <div class="menu_icon">
+              <div className="menu_icon">
                 <svg
                   fill="#000000"
                   width="800px"
@@ -106,15 +106,15 @@ const Sidebar = ( { toggleSidebar }) => {
                   />
                 </svg>
               </div>
-              <div class="menu_name">Table View</div>
+              <div className="menu_name">Table View</div>
             </Nav.Link>
           </Nav>
         </ul>
       </div>
-      <div class="log_out">
-        <a href="#" class="logout_btn">
-          <div class="text">Log Out</div>
-          <span class="sign">
+      <div className="log_out">
+        <a href="#" className="logout_btn">
+          <div className="text">Log Out</div>
+          <span className="sign">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -125,7 +125,7 @@ const Sidebar = ( { toggleSidebar }) => {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="icon icon-tabler icons-tabler-outline icon-tabler-logout"
+              className="icon icon-tabler icons-tabler-outline icon-tabler-logout"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />
               <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />

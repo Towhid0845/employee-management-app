@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { Spinner } from "react-bootstrap";
 import { TbPlus } from "react-icons/tb";
 import employeesData from "../data/employees";
 import EmployeeTable from "../components/EmployeeTable";
@@ -7,11 +8,12 @@ import AddModal from "../components/AddModal";
 import EditModal from "../components/EditModal";
 import ViewModal from "../components/ViewModal";
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 
 const TableView = () => {
   const [employees, setEmployees] = useState(employeesData);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [isAdding, setIsAdding] = useState(false);
   const [addModal, setAddModal] = useState(false);
@@ -21,11 +23,10 @@ const TableView = () => {
 
   const [viewModal, setViewModal] = useState(false);
 
-    const handleAdd = () => {
-      setIsAdding(true); 
-      setAddModal(true); 
-    };
-
+  const handleAdd = () => {
+    setIsAdding(true);
+    setAddModal(true);
+  };
 
   const handleEdit = (id) => {
     const [employee] = employees.filter((employee) => employee.id === id);
@@ -63,6 +64,29 @@ const TableView = () => {
       }
     });
   };
+
+  // Simulate data fetching
+  useEffect(() => {
+    const fetchData = async () => {
+      // Simulate a delay (e.g., API call)
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 500); // 2 seconds delay
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="vh-100 d-flex align-items-center justify-content-center">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+        <p>Loading employees...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="content_body position-relative">

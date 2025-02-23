@@ -1,17 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Spinner } from "react-bootstrap";
 import EmployeeCard from "../components/EmployeeCard";
 import employeesData from "../data/employees";
 import Footer from "../components/Footer";
 
 const CardView = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate data fetching
+  useEffect(() => {
+    const fetchData = async () => {
+      // Simulate a delay (e.g., API call)
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 500); // 2 seconds delay
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="vh-100 d-flex align-items-center justify-content-center">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+        <p>Loading employees...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="content_body position-relative">
       <div className="content_main">
-        <div class="container">
+        <div className="container">
           {/* pagination and action btn */}
           <div className="pagination_action d-none d-md-block">
             <div className="d-flex justify-content-between align-items-center">
-              <div class="page_header">
+              <div className="page_header">
                 <h4 className="form_card_title mb-0">Card View</h4>
               </div>
               <div className="top_pagination d-flex gap-4 align-items-center justify-content-end">

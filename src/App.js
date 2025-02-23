@@ -35,10 +35,8 @@ const App = () => {
   return (
     <main class={`nsl_cms ${isCollapsed ? "collapsed_sidebar" : ""}`}>
       <Sidebar toggleSidebar={toggleSidebar} />
-      {/* <Sidebar /> */}
-      <div class="right_content">
+      <div className="right_content">
         <AppNavbar toggleSidebar={toggleSidebar} />
-        {/* <AppNavbar /> */}
         <Routes>
           <Route path="/" element={<CardView />} />
           <Route path="/table" element={<TableView />} />
